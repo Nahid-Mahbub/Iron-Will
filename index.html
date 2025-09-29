@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iron Will</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="circle">
+      <div class="time-display">
+        <div id="days" class="days">0 days</div>
+        <div id="hms" class="hms">00:00:00</div>
+      </div>
+      <svg class="progress" viewBox="0 0 200 200">
+        <circle class="bg" cx="100" cy="100" r="90"></circle>
+        <circle class="fg" cx="100" cy="100" r="90"></circle>
+      </svg>
+    </div>
+
+    <button id="resetBtn" class="reset-btn">⟲</button>
+
+    <blockquote class="quote">
+      “Strength does not come from physical capacity.
+      It comes from an indomitable will.”
+      <footer>- Mahatma Gandhi</footer>
+    </blockquote>
+
+    <div class="bottom-buttons">
+      <button id="rankBtn">My Rank</button>
+      <button id="historyBtn">History</button>
+    </div>
+  </div>
+
+  <!-- Rank Modal -->
+  <div id="rankModal" class="modal">
+    <div class="modal-content">
+      <span id="closeRank" class="close">&times;</span>
+      <h2>Rank List</h2>
+      <ul id="rankList"></ul>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="historyModal" class="modal">
+    <div class="modal-content">
+      <span id="closeHistory" class="close">&times;</span>
+      <h2>History</h2>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

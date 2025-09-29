@@ -1,0 +1,99 @@
+body {
+  background:#000;
+  color:#fff;
+  font-family:'Segoe UI', sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+
+.container { text-align:center; max-width:350px; }
+
+.circle {
+  position:relative;
+  width:250px;
+  height:250px;
+  margin:auto;
+}
+
+.time-display {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  text-align:center;
+}
+
+.days { font-size:2rem; font-weight:bold; }
+.hms  { font-size:1.1rem; color:#bbb; }
+
+svg.progress { transform:rotate(-90deg); width:100%; height:100%; }
+circle { fill:none; stroke-width:10; stroke-linecap:round; }
+.bg { stroke:#222; }
+.fg {
+  stroke:#21f373;
+  stroke-dasharray:565;
+  stroke-dashoffset:565;
+  transition:stroke-dashoffset 1s linear;
+}
+
+.reset-btn {
+  background:#e74c3c;
+  border:none;
+  padding:12px 18px;
+  font-size:1.4rem;
+  border-radius:50%;
+  color:#fff;
+  margin-top:20px;
+  cursor:pointer;
+}
+.reset-btn:hover { background:#c0392b; }
+
+.quote { font-style:italic; margin:20px auto; max-width:280px; color:#ccc; }
+
+.bottom-buttons { margin-top:10px; }
+.bottom-buttons button {
+  background:#111;
+  border:1px solid #444;
+  color:#fff;
+  padding:8px 18px;
+  margin:5px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.bottom-buttons button:hover { background:#333; }
+
+/* ===== Modal ===== */
+.modal {
+  display:none;
+  position:fixed;
+  z-index:10;
+  left:0; top:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.7);
+}
+.modal-content {
+  background:#1b1b1b;
+  margin:10% auto;
+  padding:20px;
+  border-radius:10px;
+  width:300px;
+  color:#fff;
+}
+.close {
+  float:right;
+  font-size:24px;
+  cursor:pointer;
+}
+#rankList, #historyList {
+  list-style:none;
+  padding:0;
+  margin-top:10px;
+}
+#rankList li, #historyList li {
+  padding:6px 0;
+  border-bottom:1px solid #333;
+}
+#rankList li.current { color:#21f373; font-weight:bold; }
