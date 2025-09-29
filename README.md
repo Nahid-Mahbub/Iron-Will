@@ -3,6 +3,7 @@
 **Iron Will** is a simple web-based streak counter that helps users track their continuous days of activity, show their progress, and assign ranks based on their consistency. The counter persists even after closing the browser using `localStorage`. Additionally, it features a motivational **quote system** to keep users inspired every day.  
 
 > This project was developed with the help of AI assistance.
+> Use this Webapp [Click Here](https://nahid-mahbub.github.io/Iron-Will/)
 
 ---
 
@@ -48,6 +49,7 @@
 4. Your streak will update automatically each day.
 5. Click **Reset** to start over.
 6. Read the daily motivational quote to stay inspired.
+7. Use this link: [Click Here](https://nahid-mahbub.github.io/Iron-Will/)
 
 ---
 
