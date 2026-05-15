@@ -1,3 +1,6 @@
+/* ===================================================
+   BASE STYLES
+   =================================================== */
 body {
   background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
   color: #fff;
@@ -23,6 +26,9 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* ===================================================
+   CIRCLE & TIME DISPLAY
+   =================================================== */
 .circle {
   position: relative;
   width: 280px;
@@ -83,9 +89,7 @@ circle {
   stroke-linecap: round;
 }
 
-.bg {
-  stroke: rgba(255, 255, 255, 0.1);
-}
+.bg { stroke: rgba(255, 255, 255, 0.1); }
 
 .fg {
   stroke: url(#gradient);
@@ -95,6 +99,9 @@ circle {
   filter: drop-shadow(0 0 6px rgba(33, 243, 115, 0.3));
 }
 
+/* ===================================================
+   RESET BUTTON
+   =================================================== */
 .reset-btn {
   background: linear-gradient(45deg, #e74c3c, #c0392b);
   border: none;
@@ -108,16 +115,12 @@ circle {
   box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
 }
 
-.reset-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
-}
+.reset-btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4); }
+.reset-btn:active { transform: translateY(0); }
 
-.reset-btn:active {
-  transform: translateY(0);
-}
-
-/* ===== Simple Quote Style (No Box) ===== */
+/* ===================================================
+   QUOTE
+   =================================================== */
 .quote {
   font-style: italic;
   margin: 25px auto;
@@ -134,6 +137,9 @@ circle {
   font-weight: 500;
 }
 
+/* ===================================================
+   BOTTOM BUTTONS
+   =================================================== */
 .bottom-buttons {
   margin-top: 20px;
   display: flex;
@@ -161,15 +167,15 @@ circle {
   transform: translateY(-1px);
 }
 
-/* ===== Modal Improvements ===== */
+/* ===================================================
+   MODALS
+   =================================================== */
 .modal {
   display: none;
   position: fixed;
   z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
 }
@@ -201,10 +207,7 @@ circle {
   transition: color 0.3s ease;
   line-height: 1;
 }
-
-.close:hover {
-  color: #e74c3c;
-}
+.close:hover { color: #e74c3c; }
 
 #rankList, #historyList {
   list-style: none;
@@ -243,24 +246,253 @@ circle {
   color: #aaa;
 }
 
-/* Responsive */
+/* ===================================================
+   START DATE PICKER — CORNER PANEL
+   =================================================== */
+
+/*
+ * Wrapper anchored to the bottom-right corner of the viewport.
+ * z-index 20 keeps it above the main card but below modals (z 10+).
+ */
+.date-picker-corner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* ---- Toggle button (calendar icon) ---- */
+.date-toggle-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(33, 243, 115, 0.35);
+  background: rgba(12, 12, 12, 0.75);
+  backdrop-filter: blur(14px);
+  color: #21f373;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.45),
+    0 0 0 0 rgba(33, 243, 115, 0);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.date-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.07);
+  background: rgba(33, 243, 115, 0.12);
+  border-color: rgba(33, 243, 115, 0.6);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(33, 243, 115, 0.2);
+}
+
+/* Pulse ring when panel is open */
+.date-toggle-btn.active {
+  border-color: #21f373;
+  box-shadow:
+    0 0 0 4px rgba(33, 243, 115, 0.15),
+    0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Slide-out panel ---- */
+.date-panel {
+  width: 280px;
+  background: rgba(18, 18, 18, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(33, 243, 115, 0.2);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* Hidden state */
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+  pointer-events: none;
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Visible state — toggled by JS */
+.date-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* ---- Panel header ---- */
+.date-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.date-panel-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #21f373;
+  letter-spacing: 0.3px;
+}
+
+.date-panel-close {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  line-height: 1;
+}
+.date-panel-close:hover {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.12);
+}
+
+/* ---- Hint text ---- */
+.date-panel-hint {
+  font-size: 0.78rem;
+  color: #666;
+  margin: 0 0 14px;
+}
+
+/* ---- datetime-local input ---- */
+.date-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #e0e0e0;
+  font-size: 0.88rem;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  /* Style the calendar / clock picker icon in supported browsers */
+  color-scheme: dark;
+}
+
+.date-input:focus {
+  border-color: rgba(33, 243, 115, 0.5);
+  box-shadow: 0 0 0 3px rgba(33, 243, 115, 0.1);
+}
+
+/* Remove the default spin buttons on WebKit */
+.date-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.6) sepia(1) saturate(3) hue-rotate(90deg);
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+.date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* ---- Set Start Date button ---- */
+.set-date-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 0;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #21f373, #64ffda);
+  color: #0c0c0c;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition:
+    opacity 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 4px 16px rgba(33, 243, 115, 0.25);
+}
+
+.set-date-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(33, 243, 115, 0.35);
+}
+
+.set-date-btn:active {
+  transform: translateY(0);
+}
+
+/* Success flash state */
+.set-date-btn.saved {
+  background: linear-gradient(90deg, #21f373, #21f373);
+  box-shadow: 0 0 20px rgba(33, 243, 115, 0.45);
+  animation: savedPulse 0.4s ease;
+}
+
+@keyframes savedPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* ---- Current start label ---- */
+.current-start-label {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.4;
+}
+
+#currentStartText {
+  color: #888;
+  font-weight: 500;
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
 @media (max-width: 480px) {
   .container {
     padding: 20px;
     margin: 10px;
   }
-  
+
   .circle {
     width: 240px;
     height: 240px;
   }
-  
+
   .days {
     font-size: 2rem;
   }
-  
+
   .quote {
     margin: 20px auto;
     font-size: 0.9rem;
+  }
+
+  /* On small screens shift the corner panel to fit */
+  .date-picker-corner {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .date-panel {
+    width: calc(100vw - 32px);   /* full-width minus gutters */
+    max-width: 320px;
   }
 }
