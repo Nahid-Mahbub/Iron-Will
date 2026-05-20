@@ -28,7 +28,7 @@
 
     <div class="progress-text" id="progressText">Keep going strong!</div>
 
-    <button id="resetBtn" class="reset-btn">⟲</button>
+    <button id="resetBtn" class="reset-btn" title="Reset Streak">⟲</button>
 
     <blockquote class="quote" id="quoteDisplay">
       "Strength does not come from physical capacity.
@@ -44,7 +44,6 @@
 
   <!-- ===== Start Date Picker Panel (corner) ===== -->
   <div class="date-picker-corner" id="datePickerCorner">
-    <!-- Toggle button -->
     <button class="date-toggle-btn" id="dateToggleBtn" title="Set Start Date">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -53,22 +52,32 @@
         <line x1="3" y1="10" x2="21" y2="10"></line>
       </svg>
     </button>
-
-    <!-- Expandable panel -->
     <div class="date-panel" id="datePanel">
       <div class="date-panel-header">
         <span class="date-panel-title">📅 Start Date</span>
         <button class="date-panel-close" id="datePanelClose">✕</button>
       </div>
       <p class="date-panel-hint">Set when your streak began</p>
-      <input
-        type="datetime-local"
-        id="startDateInput"
-        class="date-input"
-      />
+      <input type="datetime-local" id="startDateInput" class="date-input" />
       <button id="setStartDateBtn" class="set-date-btn">Set Start Date</button>
       <div class="current-start-label" id="currentStartLabel">
         Current: <span id="currentStartText">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Reset Confirmation Modal ===== -->
+  <div id="resetModal" class="modal">
+    <div class="modal-content">
+      <span id="closeReset" class="close">&times;</span>
+      <h2>⟲ Reset Streak</h2>
+      <p class="modal-hint">Your current streak will be saved to history before resetting.</p>
+      <div id="resetStreakPreview" class="streak-preview"></div>
+      <label class="note-label" for="resetNote">Session Note <span class="note-optional">(optional)</span></label>
+      <textarea id="resetNote" class="reset-note-input" placeholder="What did you learn? What's your intention for the next streak?" rows="3"></textarea>
+      <div class="modal-actions">
+        <button id="resetCancelBtn" class="modal-cancel-btn">Cancel</button>
+        <button id="resetConfirmBtn" class="modal-confirm-btn">Reset Streak</button>
       </div>
     </div>
   </div>
@@ -87,9 +96,18 @@
     <div class="modal-content">
       <span id="closeHistory" class="close">&times;</span>
       <h2>History</h2>
+      <div class="history-actions">
+        <button id="exportHistoryBtn" class="history-action-btn export-btn" title="Save history as JSON">⬇ Save JSON</button>
+        <label class="history-action-btn import-btn" for="importHistoryFile" title="Import history from JSON backup">⬆ Import JSON</label>
+        <input type="file" id="importHistoryFile" accept=".json" style="display:none">
+        <button id="clearDataBtn" class="history-action-btn clear-btn" title="Permanently delete all data">🗑 Clear All</button>
+      </div>
       <ul id="historyList"></ul>
     </div>
   </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
 
   <script src="script.js"></script>
 </body>

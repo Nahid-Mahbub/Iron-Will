@@ -496,3 +496,242 @@ circle {
     max-width: 320px;
   }
 }
+
+/* ===================================================
+   UPGRADE PATCH — NEW STYLES
+   =================================================== */
+
+/* ===== Reset Modal ===== */
+.modal-hint {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.streak-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: rgba(33, 243, 115, 0.07);
+  border: 1px solid rgba(33, 243, 115, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+}
+
+.preview-days {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #21f373, #64ffda);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.preview-rank {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.note-label {
+  display: block;
+  font-size: 0.82rem;
+  color: #aaa;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.note-optional {
+  color: #555;
+  font-size: 0.78rem;
+}
+
+.reset-note-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #e0e0e0;
+  font-size: 0.88rem;
+  font-family: inherit;
+  padding: 10px 12px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  line-height: 1.5;
+}
+
+.reset-note-input::placeholder { color: #444; }
+
+.reset-note-input:focus {
+  border-color: rgba(33, 243, 115, 0.5);
+  box-shadow: 0 0 0 3px rgba(33, 243, 115, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.modal-cancel-btn,
+.modal-confirm-btn {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.modal-cancel-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #aaa;
+}
+
+.modal-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.modal-confirm-btn {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(231, 76, 60, 0.3);
+}
+
+.modal-confirm-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(231, 76, 60, 0.4);
+}
+
+.modal-confirm-btn:active { transform: translateY(0); }
+
+/* ===== History Actions Bar ===== */
+.history-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.history-action-btn {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 8px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.export-btn {
+  background: rgba(52, 152, 219, 0.15);
+  border-color: rgba(52, 152, 219, 0.35);
+  color: #5dade2;
+}
+.export-btn:hover {
+  background: rgba(52, 152, 219, 0.25);
+  border-color: rgba(52, 152, 219, 0.6);
+  transform: translateY(-1px);
+}
+
+.import-btn {
+  background: rgba(39, 174, 96, 0.15);
+  border-color: rgba(39, 174, 96, 0.35);
+  color: #58d68d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.import-btn:hover {
+  background: rgba(39, 174, 96, 0.25);
+  border-color: rgba(39, 174, 96, 0.6);
+  transform: translateY(-1px);
+  cursor: pointer;
+}
+
+.clear-btn {
+  background: rgba(231, 76, 60, 0.12);
+  border-color: rgba(231, 76, 60, 0.3);
+  color: #e74c3c;
+}
+.clear-btn:hover {
+  background: rgba(231, 76, 60, 0.22);
+  border-color: rgba(231, 76, 60, 0.55);
+  transform: translateY(-1px);
+}
+
+/* ===== History Item — Notes & Rank ===== */
+#historyList li {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.history-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.history-rank {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.history-note {
+  width: 100%;
+  font-size: 0.82rem;
+  color: #999;
+  font-style: italic;
+  margin-top: 2px;
+  line-height: 1.4;
+  padding-left: 2px;
+}
+
+.history-date {
+  font-size: 0.78rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* ===== Toast Notification ===== */
+.toast {
+  position: fixed;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(33, 243, 115, 0.25);
+  color: #e0e0e0;
+  font-size: 0.88rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  white-space: nowrap;
+  max-width: calc(100vw - 40px);
+  text-align: center;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
